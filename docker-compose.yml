@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: 'postgres-dev'
+    image: postgres:17-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/data:/var/lib/postgresql/data
+    networks:
+      - backend
+    environment:
+      - POSTGRES_PASSWORD=S3cret
+      - POSTGRES_USER=citizix_user
+      - POSTGRES_DB=insurance_dev
+networks:
+  backend:
+    name: micro__services_network
+    external: true
